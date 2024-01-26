@@ -4,6 +4,9 @@ Das CoCo-Dashboard (Project Explore 1 - WS 2023/24)
 Dies ist ein Code-Starter für Project Explore 1 im Wintersemester 2023/24 mit einem Beispiel.
 Die technische Basis zur Umsetzung ist [p5.js](https://p5js.org/).
 
+Nach jedem `git push` wird die neue Version ein paar Minuten später hier zu sehen sein:
+<https://students.pages.coco.study/ws2324/project-explore-1/pe1-coco-dashboard-1/>
+
 Entwicklung auf dem eigenen Rechner
 -----------------------------------
 
