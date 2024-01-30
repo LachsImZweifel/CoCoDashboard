@@ -17,8 +17,21 @@ class Layouter {
         this.footerText = newFooterText;
     }
 
+    setData(dataArray) {
+        this.data = dataArray;
+    }
+
     addData(dataArray) {
         this.data.push(dataArray);
+    }
+
+    addDataArray(dataArray) {
+        // Überprüfen, ob das übergebene Argument ein Array ist
+        if (Array.isArray(dataArray)) {
+            this.data = dataArray;
+        } else {
+            throw new Error('Das übergebene Argument ist kein Array.');
+        }
     }
 
     lineLayouter(row){

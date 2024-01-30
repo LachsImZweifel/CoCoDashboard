@@ -1,14 +1,15 @@
 let bitmapFont;
-let abfahrtsplan;
+let dataHandler;
 
 function preload() {
   bitmapFont = loadJSON('BitMapCharSet.json');
-  abfahrtsplan = loadJSON('staticKvBData.json');
+  dataHandler = new DataHandler();
+  // add data here
+  dataHandler.setTrainInfoData(loadJSON('staticKvBData.json'));
 }
 
 let fahrplanLayouter = new Layouter([5,24,6]);
 let calendarLayouter = new Layouter([4,24,8]);
-// let bicycleDrawer = new SymbolDrawer(bicycleSymbol);
 
 
 
@@ -16,32 +17,11 @@ function setup() {
   Constants.canvasWidth = fahrplanLayouter.getTotalWidth();
   createCanvas(Constants.canvasWidth, Constants.canvasHeight);
   background(0);
-  let linie = []
-  for (let i = 0; i < abfahrtsplan.events.length; i++) {
-    print(abfahrtsplan.events[i].line.number);
-    linie.push(abfahrtsplan.events[i].line.number);
-    linie.push(abfahrtsplan.events[i].line.direction)
-    if (abfahrtsplan.events[i].departure.estimate == null) {
-        linie.push(abfahrtsplan.events[i].departure.timetable)
-    } else {
-      linie.push(abfahrtsplan.events[i].departure.estimate)
-    }
-    fahrplanLayouter.addData(linie);
-    linie = [];
-  }
-  for (let i = 0; i < fahrplanLayouter.length; i++) {
-    fahrplanLayouter.addData(calendarData[i]);
-  }
-  let calendarData = [
-    ["GEN5", "Präsentation", "01.03.24"],
-    ["Alle", "Coco-Fahrt", "08.03.24"],
-    ["GEN3", "Iteration", "10.10.24"],
-    ["Alle", "BlaBlaBlaBluppBLupp", "08.11.24"],
-    ["Alle", "Coco wird zum besten Studiengang aller Zeiten ernannt", "20.03.31"],
-  ];
-  for (let i = 0; i < calendarData.length; i++) {
-    calendarLayouter.addData(calendarData[i]);
-  }
+
+  // ####### ADD DATA HERE #######
+  fahrplanLayouter.addDataArray(dataHandler.getTrainInfoArray());
+  calendarLayouter.addDataArray(dataHandler.getCalendarArray());
+
   dataSource = true;
 
 }
@@ -54,9 +34,6 @@ function draw() {
   } else {
     calendarLayouter.draw();
   }
-  // fahrplanLayouter.draw();
-  // bicycleDrawer.drawSymbol(Constants.canvasWidth / 2, Constants.canvasHeight - Constants.charPixelHeight * 2);
-  // bicycleDrawer.drawTrain(Constants.canvasWidth / 2, Constants.canvasHeight - Constants.charPixelHeight * 2);
 }
 function keyPressed() {
   if (key === 'x' || key === 'X') {
