@@ -68,6 +68,7 @@ class Layouter {
             this.lineLayouter(i + startRow);
         }
         this.footerLayouter();
+        console.log(this.data);
     }
     getTotalWidth() {
         let totalWidth = 0;
