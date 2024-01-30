@@ -21,10 +21,6 @@ class Layouter {
         this.data = dataArray;
     }
 
-    addData(dataArray) {
-        this.data.push(dataArray);
-    }
-
     addDataArray(dataArray) {
         // Überprüfen, ob das übergebene Argument ein Array ist
         if (Array.isArray(dataArray)) {
