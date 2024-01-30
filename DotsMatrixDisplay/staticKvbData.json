@@ -1,0 +1,361 @@
+{
+  "updated": "29.01. 14:41:22",
+  "events": [
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:73",
+        "name": "Köln-Mülheim (Gleis 3)"
+      },
+      "departure": {
+        "estimate": "14:43",
+        "timetable": "14:39",
+        "timestamp": 1706535780,
+        "delayed": true,
+        "day": 0
+      },
+      "line": {
+        "number": "RE5 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Wesel Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "14:55",
+        "timetable": "14:55",
+        "timestamp": 1706536500,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:75",
+        "name": "Köln-Mülheim (Gleis 5)"
+      },
+      "departure": {
+        "estimate": "15:00",
+        "timetable": "15:00",
+        "timestamp": 1706536800,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RB48",
+        "product": "RegionalTrains",
+        "direction": "Oberbarmen Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:71",
+        "name": "Köln-Mülheim (Gleis 1)"
+      },
+      "departure": {
+        "estimate": "15:15",
+        "timetable": "15:06",
+        "timestamp": 1706537700,
+        "delayed": true,
+        "day": 0
+      },
+      "line": {
+        "number": "RE1 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Aachen Hbf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "15:15",
+        "timetable": "15:15",
+        "timestamp": 1706537700,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:75",
+        "name": "Köln-Mülheim (Gleis 5)"
+      },
+      "departure": {
+        "estimate": "15:35",
+        "timetable": "15:35",
+        "timestamp": 1706538900,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RB48",
+        "product": "RegionalTrains",
+        "direction": "Oberbarmen Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "15:35",
+        "timetable": "15:35",
+        "timestamp": 1706538900,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:73",
+        "name": "Köln-Mülheim (Gleis 3)"
+      },
+      "departure": {
+        "estimate": "15:43",
+        "timetable": "15:39",
+        "timestamp": 1706539380,
+        "delayed": true,
+        "day": 0
+      },
+      "line": {
+        "number": "RE5 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Wesel Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:71",
+        "name": "Köln-Mülheim (Gleis 1)"
+      },
+      "departure": {
+        "estimate": "15:50",
+        "timetable": "15:50",
+        "timestamp": 1706539800,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RE1 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Aachen Hbf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:75",
+        "name": "Köln-Mülheim (Gleis 5)"
+      },
+      "departure": {
+        "estimate": "16:00",
+        "timetable": "16:00",
+        "timestamp": 1706540400,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RB48",
+        "product": "RegionalTrains",
+        "direction": "Oberbarmen Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:71",
+        "name": "Köln-Mülheim (Gleis 1)"
+      },
+      "departure": {
+        "estimate": "16:11",
+        "timetable": "16:06",
+        "timestamp": 1706541060,
+        "delayed": true,
+        "day": 0
+      },
+      "line": {
+        "number": "RE1 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Aachen Hbf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "16:15",
+        "timetable": "16:15",
+        "timestamp": 1706541300,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:75",
+        "name": "Köln-Mülheim (Gleis 5)"
+      },
+      "departure": {
+        "estimate": "16:33",
+        "timetable": "16:33",
+        "timestamp": 1706542380,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RB48",
+        "product": "RegionalTrains",
+        "direction": "Oberbarmen Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "16:35",
+        "timetable": "16:35",
+        "timestamp": 1706542500,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:73",
+        "name": "Köln-Mülheim (Gleis 3)"
+      },
+      "departure": {
+        "estimate": "16:39",
+        "timetable": "16:39",
+        "timestamp": 1706542740,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RE5 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Wesel Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "16:55",
+        "timetable": "16:55",
+        "timestamp": 1706543700,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:75",
+        "name": "Köln-Mülheim (Gleis 5)"
+      },
+      "departure": {
+        "timetable": "17:00",
+        "timestamp": 1706544000,
+        "day": 0
+      },
+      "line": {
+        "number": "RB48",
+        "product": "RegionalTrains",
+        "direction": "Oberbarmen Bf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:71",
+        "name": "Köln-Mülheim (Gleis 1)"
+      },
+      "departure": {
+        "estimate": "17:06",
+        "timetable": "17:06",
+        "timestamp": 1706544360,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "RE1 (RRX)",
+        "product": "RegionalTrains",
+        "direction": "Aachen Hbf"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:76",
+        "name": "Köln-Mülheim (Gleis 6)"
+      },
+      "departure": {
+        "timetable": "17:15",
+        "timestamp": 1706544900,
+        "day": 0
+      },
+      "line": {
+        "number": "S6",
+        "product": "SuburbanTrains",
+        "direction": "Worringen S-Bahn"
+      }
+    },
+    {
+      "stopPoint": {
+        "ifopt": "de:05315:19201:7:77",
+        "name": "Köln-Mülheim (Gleis 7)"
+      },
+      "departure": {
+        "estimate": "17:15",
+        "timetable": "17:15",
+        "timestamp": 1706544900,
+        "delayed": false,
+        "day": 0
+      },
+      "line": {
+        "number": "S11",
+        "product": "SuburbanTrains",
+        "direction": "Bergisch Gladbach (S)"
+      }
+    }
+  ]
+}
