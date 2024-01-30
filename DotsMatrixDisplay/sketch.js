@@ -3,7 +3,7 @@ let abfahrtsplan;
 
 function preload() {
   bitmapFont = loadJSON('BitMapCharSet.json');
-  abfahrtsplan = loadJSON('http://cocos01.gm.fh-koeln.de:1880/a');
+  abfahrtsplan = loadJSON('http://cocos01.gm.fh-koeln.de:1880/live');
 }
 // const train = [
 //   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0xe8, 0x00, 0x00, 0x00, 0x68,
