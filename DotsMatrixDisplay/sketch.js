@@ -62,7 +62,7 @@ function setup() {
 function draw() {
   background(0);
   fahrplanLayouter.footerText = "Diese Woche kümmern sich Hendrik und Jakob um die Ordnung hier ** Unser Tolleyball-Grand-Champion ist ... trommelwirbel ... Jan!! ** so langsam lässt die Kreativleistung nach, der Kafeestand müsste nachgefüllt werden";
-  fahrplanLayouter.setHeaderText("Abfahrtsplan");
+  // fahrplanLayouter.setHeaderText("Abfahrtsplan");
   if (dataSource) {
     fahrplanLayouter.draw();
   } else {
