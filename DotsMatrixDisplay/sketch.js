@@ -2,8 +2,8 @@ let bitmapFont;
 let abfahrtsplan;
 
 function preload() {
-  bitmapFont = loadJSON('http://localhost:63342/pe1-coco-dashboard-1/DotsMatrixDisplay/BitMapCharSet.json');
-  abfahrtsplan = loadJSON('http://localhost:63342/pe1-coco-dashboard-1/DotsMatrixDisplay/staticKvbData.json');
+  bitmapFont = loadJSON('/DotsMatrixDisplay/BitMapCharSet.json');
+  abfahrtsplan = loadJSON('http://cocos01.gm.fh-koeln.de:1880/a');
 }
 // const train = [
 //   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0xe8, 0x00, 0x00, 0x00, 0x68,
