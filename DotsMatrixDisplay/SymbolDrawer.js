@@ -9,7 +9,7 @@ class SymbolDrawer {
                 if (this.symbolArray[i][j] === 1) {
                     fill(Constants.color1); // Turn on the LED
                     noStroke();
-                    square(x + j * (Constants.ledSize + Constants.ledSpacing), y + i * (Constants.ledSize + Constants.ledSpacing), Constants.ledSize);
+                    square(x + j * (Constants.ledLampSize + Constants.ledSpacing), y + i * (Constants.ledLampSize + Constants.ledSpacing), Constants.ledLampSize);
                 }
             }
         }

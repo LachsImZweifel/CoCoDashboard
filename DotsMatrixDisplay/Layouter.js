@@ -22,14 +22,14 @@ class Layouter {
     }
 
     lineLayouter(row){
-        let xMargin = Constants.charPixelSizeX * Constants.margin;
-        let yMargin = Constants.charPixelHeight + Constants.lineHeightPixel;
+        let xMargin = Constants.charWidthTotalInPixels * Constants.margin;
+        let yMargin = Constants.charHeightInPixels + Constants.lineHeightPixel;
         let x = xMargin;
         let y = yMargin + yMargin * row;
         for (let i = 0; i < this.data[row].length; i++){
             this.drawTextBox(this.data[row][i], this.columns[i], x, y);
-            x += this.columns[i] * Constants.charPixelSizeX;
-            x += Constants.columnsSpacing * Constants.charPixelSizeX;
+            x += this.columns[i] * Constants.charWidthTotalInPixels;
+            x += Constants.columnsSpacing * Constants.charWidthTotalInPixels;
         }
     }
 
@@ -38,15 +38,15 @@ class Layouter {
             return;
         }
         let text = "** " + this.footerText + " **";
-        let xMargin = Constants.charPixelSizeX * Constants.margin;
-        let yMargin = Constants.charPixelHeight + Constants.lineHeightPixel;
+        let xMargin = Constants.charWidthTotalInPixels * Constants.margin;
+        let yMargin = Constants.charHeightInPixels + Constants.lineHeightPixel;
         let x = xMargin;
         let y = (Constants.lineCount+Constants.margin+ Constants.footerLine) * yMargin;
         this.drawTextBox(text, this.columns[0] + this.columns[1] + this.columns[2], x, y);
     }
     drawTextBox(string, columns, x, y){
         string = string || ""; // Set string to an empty string if it's undefined
-        let textBoxWidth = columns * Constants.charPixelSizeX;
+        let textBoxWidth = columns * Constants.charWidthTotalInPixels;
         if (TextDrawer.getTextWidth(string) > textBoxWidth){
             TextDrawer.drawScrollingText(string, y, textBoxWidth, x);
         } else {
@@ -73,10 +73,10 @@ class Layouter {
     getTotalWidth() {
         let totalWidth = 0;
         for (let column of this.columns) {
-            totalWidth += column * Constants.charPixelSizeX;
+            totalWidth += column * Constants.charWidthTotalInPixels;
         }
-        totalWidth += Constants.columnsSpacing * Constants.charPixelSizeX;
-        totalWidth += 2 * Constants.charPixelSizeX;
+        totalWidth += Constants.columnsSpacing * Constants.charWidthTotalInPixels;
+        totalWidth += 2 * Constants.charWidthTotalInPixels;
         return totalWidth;
     }
 
@@ -85,8 +85,8 @@ class Layouter {
             return;
         }
         let text = "** " + this.headerText + " **";
-        let xMargin = Constants.charPixelSizeX * Constants.margin;
-        let yMargin = Constants.charPixelHeight + Constants.lineHeightPixel;
+        let xMargin = Constants.charWidthTotalInPixels * Constants.margin;
+        let yMargin = Constants.charHeightInPixels + Constants.lineHeightPixel;
         let x = xMargin;
         let y = yMargin;
         this.drawTextBox(text, this.columns[0] + this.columns[1] + this.columns[2], x, y);

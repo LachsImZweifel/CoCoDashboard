@@ -2,7 +2,7 @@ class TextDrawer {
     static drawStaticText(string, x, y) {
         for (let char of string) {
             this.drawChar(char, x, y);
-            x += Constants.charPixelWidth + Constants.blankPixel;
+            x += Constants.charWidthInPixels + Constants.distanceInPixels;
         }
     }
 
@@ -21,7 +21,7 @@ class TextDrawer {
         // Draw the text within the specified text box width
         for (let char of string) {
             this.drawScrollingChar(char, posX, posY, startX, startX + textBoxWidth);
-            posX += Constants.charPixelWidth + Constants.blankPixel;
+            posX += Constants.charWidthInPixels + Constants.distanceInPixels;
         }
     }
 
@@ -40,7 +40,7 @@ class TextDrawer {
                     fill(0); // Turn off the LED
                 }
                 noStroke();
-                square(Constants.ledSpacing + x + j * (Constants.ledSize + Constants.ledSpacing), Constants.ledSpacing + y + i * (Constants.ledSize + Constants.ledSpacing), Constants.ledSize);
+                square(Constants.ledSpacing + x + j * (Constants.ledLampSize + Constants.ledSpacing), Constants.ledSpacing + y + i * (Constants.ledLampSize + Constants.ledSpacing), Constants.ledLampSize);
             }
         }
     }
@@ -49,7 +49,7 @@ class TextDrawer {
         char = char.toUpperCase();
         let rows = bitmapFont[char];
         for (let i = 0; i < rows.length; i++) {
-            let pixelX = x * (Constants.ledSize + Constants.ledSpacing);
+            let pixelX = x * (Constants.ledLampSize + Constants.ledSpacing);
             for (let j = 0; j < rows[i].length; j++) {
                 if (rows[i][j] === '1') {
                     fill(Constants.color1); // Turn on the LED
@@ -57,16 +57,16 @@ class TextDrawer {
                     fill(0); // Turn off the LED
                 }
                 noStroke();
-                let xSquare = Constants.ledSpacing + x + j * (Constants.ledSize + Constants.ledSpacing);
-                let ySquare = Constants.ledSpacing + y + i * (Constants.ledSize + Constants.ledSpacing);
+                let xSquare = Constants.ledSpacing + x + j * (Constants.ledLampSize + Constants.ledSpacing);
+                let ySquare = Constants.ledSpacing + y + i * (Constants.ledLampSize + Constants.ledSpacing);
                 if ( xSquare > startX1 && xSquare < startX2) {
-                    square(xSquare, ySquare, Constants.ledSize);
+                    square(xSquare, ySquare, Constants.ledLampSize);
                 }
             }
         }
     }
 
     static getTextWidth(text) {
-        return text.length * (Constants.charPixelWidth + Constants.blankPixel);
+        return text.length * (Constants.charWidthInPixels + Constants.distanceInPixels);
     }
 }
