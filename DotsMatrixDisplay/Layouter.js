@@ -45,6 +45,7 @@ class Layouter {
         this.drawTextBox(text, this.columns[0] + this.columns[1] + this.columns[2], x, y);
     }
     drawTextBox(string, columns, x, y){
+        string = string || ""; // Set string to an empty string if it's undefined
         let textBoxWidth = columns * Constants.charPixelSizeX;
         if (TextDrawer.getTextWidth(string) > textBoxWidth){
             TextDrawer.drawScrollingText(string, y, textBoxWidth, x);
