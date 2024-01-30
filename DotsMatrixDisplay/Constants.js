@@ -6,14 +6,19 @@ class Constants {
     static charWidth = 5;
     static lineHeight = 3;
     static blank = 1;
-    static blankPixel = (Constants.led) * Constants.blank;
+    static blankPixel = (Constants.ledSize + Constants.ledSpacing) * Constants.blank;
     static charPixelHeight = (Constants.ledSize + Constants.ledSpacing) * Constants.charHeight;
     static charPixelWidth = (Constants.ledSize + Constants.ledSpacing) * Constants.charWidth;
     static charPixelSizeX = Constants.charPixelWidth + Constants.blankPixel;
     static lineHeightPixel = (Constants.ledSize + Constants.ledSpacing) * Constants.lineHeight;
-    static margin = 1;
-    static columnSpacing = 1;
-    static lineCount = 12;
     static color1 = '#ffae00'; // Color of the LEDs
-    // static columns = [2, 2, 2];
+    static columns = [5,24,6];
+    static columnsSpacing = 1;
+    static margin = 1;
+    static footerLine = 1;
+    static canvasWidth = (Constants.columns[0] + Constants.columns[1] + Constants.columns[2] + Constants.columnsSpacing + Constants.margin*2) * (Constants.charPixelWidth + Constants.blankPixel);
+    static lineCount = 12;
+    static canvasHeight = (Constants.lineCount + Constants.margin*3 + Constants.footerLine) * (Constants.charPixelHeight + Constants.lineHeightPixel);
+    static offset = 0; // Define offset outside the drawScrollingText function
+    static scrollSpeed = 1.5; // Adjust the speed of scrolling
 }
