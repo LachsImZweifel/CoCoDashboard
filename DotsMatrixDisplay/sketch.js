@@ -2,7 +2,7 @@ let bitmapFont;
 let abfahrtsplan;
 
 function preload() {
-  bitmapFont = loadJSON('/DotsMatrixDisplay/BitMapCharSet.json');
+  bitmapFont = loadJSON('BitMapCharSet.json');
   abfahrtsplan = loadJSON('http://cocos01.gm.fh-koeln.de:1880/a');
 }
 // const train = [
@@ -26,7 +26,7 @@ function preload() {
 // ];
 let fahrplanLayouter = new Layouter([5,24,6]);
 let calendarLayouter = new Layouter([4,24,8]);
-let bicycleDrawer = new SymbolDrawer(bicycleSymbol);
+// let bicycleDrawer = new SymbolDrawer(bicycleSymbol);
 
 
 
