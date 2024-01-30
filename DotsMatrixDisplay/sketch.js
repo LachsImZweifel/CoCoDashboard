@@ -39,7 +39,11 @@ function setup() {
     print(abfahrtsplan.events[i].line.number);
     linie.push(abfahrtsplan.events[i].line.number);
     linie.push(abfahrtsplan.events[i].line.direction)
-    linie.push(abfahrtsplan.events[i].departure.estimate)
+    if (abfahrtsplan.events[i].departure.estimate == null) {
+        linie.push(abfahrtsplan.events[i].departure.timetable)
+    } else {
+      linie.push(abfahrtsplan.events[i].departure.estimate)
+    }
     fahrplanLayouter.addData(linie);
     linie = [];
   }
