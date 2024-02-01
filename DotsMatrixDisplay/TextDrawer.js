@@ -23,6 +23,7 @@ class TextDrawer {
             this.drawScrollingChar(char, posX, posY, startX, startX + textBoxWidth);
             posX += Constants.charWidthInPixels + Constants.distanceInPixels;
         }
+
     }
 
     static drawChar(char, x, y) {
