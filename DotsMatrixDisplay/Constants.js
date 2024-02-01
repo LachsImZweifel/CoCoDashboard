@@ -13,7 +13,9 @@ class Constants {
 
     static columns = [5,24,6];
     static columnsSpacing = 1;
+    static columnSpacingInLamps = Constants.columnsSpacing * (Constants.charWidthInLamps + Constants.distanceInLamps);
     static margin = 1;
+    static marginInLamps = this.margin * (Constants.charWidthInLamps + Constants.distanceInLamps);
     static footerLine = 1;
     static canvasWidth = (Constants.columns[0] + Constants.columns[1] + Constants.columns[2] + Constants.columnsSpacing + Constants.margin*2) * (Constants.charWidthInPixels + Constants.distanceInPixels);
     static lineCount = 12;
