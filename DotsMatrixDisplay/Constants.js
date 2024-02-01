@@ -1,5 +1,6 @@
 class Constants {
     static color1 = '#ffae00'; // Color of the LEDs
+    static color2 = '#2d2d2d'; // Color of the LEDs
     static ledLampSize = 3; // will resize the size of the dots/squares
     static ledSpacing = 1;
     static led = Constants.ledLampSize + Constants.ledSpacing;
