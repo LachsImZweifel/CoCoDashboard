@@ -17,15 +17,17 @@ let calendarLayouter = new Layouter([4,24,8]);
 function setup() {
     Constants.canvasWidth = fahrplanLayouter.getTotalWidth();
     createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-    const inputStringArray = ["S1", "Richtung", "Abfahrt"];
-    const bitPatterns = createFullRow(inputStringArray);
-    console.log(bitPatterns);
+
+
     background(0);
     dataSource = true;
 
 }
 function draw() {
     background(0);
+    const inputStringArray = ["Richtung"];
+    const bitPatterns = createFullRow(inputStringArray);
+    console.log(bitPatterns);
 }
 
 // Function to get the bit pattern for a character
@@ -36,28 +38,29 @@ function getCharBitPattern(char) {
 
 
 function createFullRow(stringArray) {
-
     let resultRows = Array(7).fill('');
     let columnSpacing = '';
     for (let i = 0; i < Constants.columnSpacingInLamps; i++) {
         columnSpacing += '0';
     }
-    for (const string of stringArray) {
-        let textCell = createTextCell(string);
+    for (let i = 0; i < stringArray.length; i++) {
+        let textCell = trimRows(createTextCell(stringArray[i]),20);
         resultRows = resultRows.map((row, idx) => row + textCell[idx]);
-        resultRows = resultRows.map(row => row + columnSpacing);
+        // Add columnSpacing to all but the last element
+        if (i < stringArray.length - 1) {
+            resultRows = resultRows.map(row => row + columnSpacing);
+        }
     }
     let margin = '';
     for (let i = 0; i < Constants.marginInLamps; i++) {
         margin += '0';
     }
-    resultRows = resultRows.map(row => margin + row + margin );
+    // resultRows = resultRows.map(row => margin + row + margin );
     return resultRows.join('\n');
 }
 
 function createTextCell(str) {
     let resultRows = Array(7).fill('');
-
     for (let char of str) {
         let pattern = getCharBitPattern(char.toUpperCase());
         pattern.forEach((row, idx) => {
@@ -69,6 +72,21 @@ function createTextCell(str) {
         });
     }
     return resultRows;
+}
+
+function trimRows(rows, maxWidth) {
+    for (let i = 0; i < rows.length; i++) {
+        rows[i] = animateRow(rows[i]).slice(0, maxWidth);
+    }
+    return rows;
+}
+
+function animateRow(row){
+    row = row.substring(1);
+    for (let i = 0; i < row.length; i++){
+        row += '0';
+    }
+    return row;
 }
 
 function keyPressed() {
