@@ -1,6 +1,7 @@
 let bitmapFont;
 let dataHandler;
-
+let fullRows = []
+let columnDummy = [5,24,6];
 function preload() {
     bitmapFont = loadJSON('BitMapCharSet.json');
     dataHandler = new DataHandler();
@@ -17,17 +18,17 @@ let calendarLayouter = new Layouter([4,24,8]);
 function setup() {
     Constants.canvasWidth = fahrplanLayouter.getTotalWidth();
     createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-
-
+    const inputStringArray = ["Richtung", "Linie", "Abfahrt"];
+    const bitPatterns = createRow(inputStringArray);
+    console.log(bitPatterns);
+    createRowOutput(fullRows);
     background(0);
     dataSource = true;
 
 }
 function draw() {
     background(0);
-    const inputStringArray = ["Richtung"];
-    const bitPatterns = createFullRow(inputStringArray);
-    console.log(bitPatterns);
+
 }
 
 // Function to get the bit pattern for a character
@@ -36,18 +37,16 @@ function getCharBitPattern(char) {
     return bitmapFont[char] || defaultPattern;
 }
 
-
-function createFullRow(stringArray) {
+function createRowOutput(rowArray) {
+    console.log(rowArray);
     let resultRows = Array(7).fill('');
     let columnSpacing = '';
     for (let i = 0; i < Constants.columnSpacingInLamps; i++) {
         columnSpacing += '0';
     }
-    for (let i = 0; i < stringArray.length; i++) {
-        let textCell = trimRows(createTextCell(stringArray[i]),20);
-        resultRows = resultRows.map((row, idx) => row + textCell[idx]);
-        // Add columnSpacing to all but the last element
-        if (i < stringArray.length - 1) {
+    for (let i = 0; i < rowArray.length; i++) {
+        resultRows = resultRows.map((row, idx) => row + trimRows(rowArray[i][idx],columnDummy[i]*Constants.charWidthInLamps));
+        if (i < rowArray.length - 1) {
             resultRows = resultRows.map(row => row + columnSpacing);
         }
     }
@@ -55,8 +54,25 @@ function createFullRow(stringArray) {
     for (let i = 0; i < Constants.marginInLamps; i++) {
         margin += '0';
     }
-    // resultRows = resultRows.map(row => margin + row + margin );
-    return resultRows.join('\n');
+    resultRows = resultRows.map(row => margin + row + margin );
+    console.log(resultRows);
+
+}
+
+function createRow(stringArray) {
+    let resultRows = Array(7).fill('');
+    let columnSpacing = '';
+    for (let i = 0; i < Constants.columnSpacingInLamps; i++) {
+        columnSpacing += '0';
+    }
+    for (let i = 0; i < stringArray.length; i++) {
+        let textCell = createTextCell(stringArray[i]);
+        resultRows = resultRows.map((row, idx) => row + textCell[idx]);
+        fullRows.push(resultRows);
+        resultRows = Array(7).fill('');
+    }
+    console.log(fullRows);
+
 }
 
 function createTextCell(str) {
@@ -75,18 +91,17 @@ function createTextCell(str) {
 }
 
 function trimRows(rows, maxWidth) {
-    for (let i = 0; i < rows.length; i++) {
-        rows[i] = animateRow(rows[i]).slice(0, maxWidth);
-    }
+    rows = fullFillRow(rows).slice(0, maxWidth);
     return rows;
 }
 
-function animateRow(row){
-    row = row.substring(1);
-    for (let i = 0; i < row.length; i++){
-        row += '0';
+function fullFillRow(row){
+    let zeros = '';
+    for (let i = 0; i < row.length; i++) {
+        zeros += '0';
     }
-    return row;
+    let newRow = row + zeros;
+    return newRow.slice(1) + newRow[0];
 }
 
 function keyPressed() {
