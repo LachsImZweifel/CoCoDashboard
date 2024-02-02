@@ -5,7 +5,7 @@ class Layouter {
         this.footerText = "";
         this.headerText = "";
     }
-
+/*
     // ... rest of the class ...
 
     setHeaderText(newHeaderText) {
@@ -102,5 +102,5 @@ class Layouter {
     }
 
 
-
+*/
 }

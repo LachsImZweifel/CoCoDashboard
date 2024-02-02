@@ -1,4 +1,5 @@
 class SymbolDrawer {
+    /*
     constructor(symbolArray) {
         this.symbolArray = symbolArray;
     }
@@ -35,4 +36,5 @@ class SymbolDrawer {
         // Draw the train symbol
         trainDrawer.drawSymbol(x, y);
     }
+    */
 }

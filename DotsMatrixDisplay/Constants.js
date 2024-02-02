@@ -1,26 +1,44 @@
 class Constants {
-    static color1 = '#ffae00'; // Color of the LEDs
-    static color2 = '#2d2d2d'; // Color of the LEDs
-    static ledLampSize = 3; // will resize the size of the dots/squares
+    // Color Settings
+    static colorOn = '#ffae00';
+    static colorOff = '#2d2d2d';
+
+    // LED Settings (will change the size of the dots/pixels and have impact on the canvas size)
+    static ledLampSize = 3;
     static ledSpacing = 1;
     static led = Constants.ledLampSize + Constants.ledSpacing;
-    static charHeightInLamps = 7; static charHeightInPixels = (Constants.ledLampSize + Constants.ledSpacing) * Constants.charHeightInLamps;
-    static charWidthInLamps = 5; static charWidthInPixels = (Constants.ledLampSize + Constants.ledSpacing) * Constants.charWidthInLamps;
-    static distanceInLamps = 1; static distanceInPixels = (Constants.ledLampSize + Constants.ledSpacing) * Constants.distanceInLamps;
-    static charWidthTotalInPixels = Constants.charWidthInPixels + Constants.distanceInPixels;
-    static lineHeightInLamps = 3; static lineHeightPixel = (Constants.ledLampSize + Constants.ledSpacing) * Constants.lineHeightInLamps;
 
+    // Height Settings in Dots
+    static charWidthDots = 5;
+    static spacesBetweenCharsDots = 1;
+    static columnWidthDots = this.charWidthDots + this.spacesBetweenCharsDots;
+    static textBoxSpacingDots = this.columnWidthDots;
+    static marginLeftRightDots = this.columnWidthDots;
 
+    // Width Settings in Dots
+    static charHeightDots = 7;
+    static rowHeightDots = this.charHeightDots;
+    static spaceBetweenRowsDots = 3;
+    static marginTopBottomDots = this.marginLeftRightDots;
 
-    static columns = [5,24,6];
-    static columnsSpacing = 1;
-    static columnSpacingInLamps = Constants.columnsSpacing * (Constants.charWidthInLamps + Constants.distanceInLamps);
-    static margin = 1;
-    static marginInLamps = this.margin * (Constants.charWidthInLamps + Constants.distanceInLamps);
-    static footerLine = 1;
-    static canvasWidth = (Constants.columns[0] + Constants.columns[1] + Constants.columns[2] + Constants.columnsSpacing + Constants.margin*2) * (Constants.charWidthInPixels + Constants.distanceInPixels);
-    static lineCount = 12;
-    static canvasHeight = (Constants.lineCount + Constants.margin*3 + Constants.footerLine) * (Constants.charHeightInPixels + Constants.lineHeightPixel);
-    static offset = 0; // Define offset outside the drawScrollingText function
-    static scrollSpeed = 1.5; // Adjust the speed of scrolling
+    // Counts of Rows
+    static contentRowCount = 7
+    static emptyLineBetweenContentAndFooter = 1;
+    static footerRows = 1;
+    static totalRowCount = this.contentRowCount + this.emptyLineBetweenContentAndFooter + this.footerRows;
+
+    // Calculation of canvas height
+    static heightOfContentDots = ((this.totalRowCount-1) * (this.rowHeightDots + this.spaceBetweenRowsDots) + this.rowHeightDots );
+    static heightOfFooterDots = this.rowHeightDots * (this.footerRows + this.spaceBetweenRowsDots);
+    static canvasHeight = (this.heightOfContentDots + this.heightOfFooterDots) * this.led + this.marginTopBottomDots * 2;
+
+    // Calculation of canvas width
+    static canvasWidth = 800;
+
+    // Animation
+    static displayUpdatingRate = 20;
+
+    // Data
+    static fullRows = [];
+    static bitmapFont;
 }

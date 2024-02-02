@@ -1,4 +1,4 @@
-let bitmapFont;
+/*let bitmapFont;
 let dataHandler;
 
 function preload() {
@@ -39,4 +39,4 @@ function keyPressed() {
   if (key === 'x' || key === 'X') {
     dataSource = !dataSource;
   }
-}
+} */

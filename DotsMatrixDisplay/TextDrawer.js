@@ -1,4 +1,5 @@
 class TextDrawer {
+    /*
     static drawStaticText(string, x, y) {
         for (let char of string) {
             this.drawChar(char, x, y);
@@ -69,5 +70,5 @@ class TextDrawer {
 
     static getTextWidth(text) {
         return text.length * (Constants.charWidthInPixels + Constants.distanceInPixels);
-    }
+    } */
 }

@@ -1,64 +1,37 @@
-let bitmapFont;
+
 let dataHandler;
-let fullRows = []
 let columnDummy = [5,17,5];
 let x = 0;
 let lastUpdateTime = 0;
-let updateRate = 20; // in millis (20 läuft flüssig)
 function preload() {
-    bitmapFont = loadJSON('BitMapCharSet.json');
+    Constants.bitmapFont = loadJSON('BitMapCharSet.json');
     dataHandler = new DataHandler();
     // add data here
     dataHandler.setTrainInfoData(loadJSON('staticKvBData.json'));
 }
 
-let fahrplanLayouter = new Layouter([5,24,6]);
-let calendarLayouter = new Layouter([4,24,8]);
-
-
-
-
 function setup() {
-    Constants.canvasWidth = fahrplanLayouter.getTotalWidth();
+    setupDisplay();
+}
+
+function draw() {
+    DisplayDrawer.displayDraw();
+    updatingForAnimation();
+}
+
+function setupDisplay() {
+
+    Constants.canvasWidth = Constants.led *(Constants.marginLeftRightDots*2 + Constants.columnWidthDots*(columnDummy[0]+columnDummy[1]+columnDummy[2]) + Constants.textBoxSpacingDots*2);
     createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-    const inputStringArray = ["S6", "Flughafen Düsseldorf", "06:00"];
-    createRow(inputStringArray);
-    createRow(["S1", "Flughafen Bahamas", "21:00"]);
-    for (i = 0; i < 6; i++){
+    for (let i = 0; i < Constants.contentRowCount; i++){
         createRow(dataHandler.getTrainInfoArray()[i]);
     }
     background(0);
-    dataSource = true;
-
-    console.log(fullRows);
 }
 
-let x2 =1;
-function draw() {
-    background(0);
-    let y = 0;
-    for (const element of fullRows) {
-        for (const row of createRowOutput(element)) {
-            let x = 0;
-            for (const char of row) {
-                if (char === '1') {
-                    fill(Constants.color1); // Turn on the LED
-                } else {
-                    fill(Constants.color2); // Turn off the LED
-                }
-                noStroke();
-                //square(x, y, Constants.ledLampSize);
-                circle(x, y, Constants.ledLampSize);
-                x += Constants.ledLampSize + Constants.ledSpacing;
-            }
-            y+= Constants.ledLampSize + Constants.ledSpacing;
-        }
-        console.log(frameRate());
-    }
-
-    // TODO: noch in function übergeben
+function updatingForAnimation(){
     let currentTime = millis();
-    if (currentTime - lastUpdateTime >= updateRate) {
+    if (currentTime - lastUpdateTime >= Constants.displayUpdatingRate) {
         x += 1;
         lastUpdateTime = currentTime;
     }
@@ -67,7 +40,7 @@ function draw() {
 // Function to get the bit pattern for a character
 function getCharBitPattern(char) {
     const defaultPattern = ["00000", "00000", "00000", "00000", "00000", "00000", "00000"];
-    return bitmapFont[char] || defaultPattern;
+    return Constants.bitmapFont[char] || defaultPattern;
 }
 
 
@@ -75,17 +48,17 @@ function createRowOutput(rowArray) {
     let resultRows = Array(7).fill('');
     let columnSpacing = '';
     if (rowArray.length !== 1) {
-        for (let i = 0; i < Constants.columnSpacingInLamps; i++) {
+        for (let i = 0; i < Constants.columnWidthDots; i++) {
             columnSpacing += '0';
         }
         for (let i = 0; i < rowArray.length; i++) {
-            resultRows = resultRows.map((row, idx) => row + trimRows(rowArray[i][idx],columnDummy[i]*(Constants.charWidthInLamps+Constants.distanceInLamps)));
+            resultRows = resultRows.map((row, idx) => row + trimRows(rowArray[i][idx],columnDummy[i]*(Constants.columnWidthDots))); //Breite der Textbox
             if (i < rowArray.length -1) {
                 resultRows = resultRows.map(row => row + columnSpacing);
             }
         }
         let margin = '';
-        for (let i = 0; i < Constants.marginInLamps; i++) {
+        for (let i = 0; i < Constants.marginLeftRightDots; i++) {
             margin += '0';
         }
         resultRows = resultRows.map(row => margin + row + margin );
@@ -97,20 +70,20 @@ function createRowOutput(rowArray) {
 }
 
 function createBlankRows() {
-    let blankRows = Array(Constants.lineHeightInLamps).fill('');
-    for (let i = 0; i < Constants.lineHeightInLamps; i++) {
+    let blankRows = Array(Constants.spaceBetweenRowsDots).fill('');
+    for (let i = 0; i < Constants.spaceBetweenRowsDots; i++) {
         blankRows[i] = '0'.repeat(Constants.canvasWidth);
     }
-    let arrayArroundBlankRows = [];
-    arrayArroundBlankRows.push(blankRows);
-    fullRows.push(arrayArroundBlankRows);
+    let arrayAroundBlankRows = [];
+    arrayAroundBlankRows.push(blankRows);
+    Constants.fullRows.push(arrayAroundBlankRows);
 }
 
 function createRow(stringArray) {
     let resultRows = Array(7).fill('');
     let fullRow = [];
     let columnSpacing = '';
-    for (let i = 0; i < Constants.columnSpacingInLamps; i++) {
+    for (let i = 0; i < Constants.textBoxSpacingDots; i++) {
         columnSpacing += '0';
     }
     for (let i = 0; i < stringArray.length; i++) {
@@ -119,7 +92,7 @@ function createRow(stringArray) {
         fullRow.push(resultRows);
         resultRows = Array(7).fill('');
     }
-    fullRows.push(fullRow);
+    Constants.fullRows.push(fullRow);
     createBlankRows(); // create a line spacing
 }
 
@@ -129,7 +102,7 @@ function createTextCell(str) {
         let pattern = getCharBitPattern(char.toUpperCase());
         pattern.forEach((row, idx) => {
             let distanceToNextChar ='';
-            for (let i = 0; i < Constants.distanceInLamps; i++) {
+            for (let i = 0; i < Constants.spacesBetweenCharsDots; i++) {
                 distanceToNextChar += '0';
             }
             resultRows[idx] += row + distanceToNextChar;
@@ -152,17 +125,16 @@ function trimRows(row, width) {
 }
 function animateTextInCell(row){
     let zeros = '';
-    for (let i = 0; i < (Constants.charWidthInLamps+Constants.distanceInLamps); i++) {
+
+    for (let i = 0; i < (Constants.columnWidthDots); i++) {
         zeros += '0';
     }
     let newRow = row + zeros;
-    // TODO x is running infitely
-    let offset = x % newRow.length;
-    return newRow.slice(offset) + newRow.substring(0, offset);
-}
 
-function keyPressed() {
-    if (key === 'x' || key === 'X') {
-        dataSource = !dataSource;
+    let offset = x % newRow.length;
+
+    if (x > 2147483647) { // Reset if x get to big ?
+        x = 0;
     }
+    return newRow.slice(offset) + newRow.substring(0, offset);
 }
