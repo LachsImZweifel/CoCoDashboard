@@ -1,24 +1,35 @@
+let dataHandler;
+let displayBuilder;
+let displayBuilder2;
+let dataSource;
 
-// Called once when the program starts just before setup().
-// Use this to load external data, i.e. make your API calls here.
-// See https://p5js.org/reference/#/p5/preload
 function preload() {
-  covidPreload();
-  peanutsPreload();
+  Constants.bitmapFont = loadJSON('BitMapCharSet.json');
+  dataHandler = new DataHandler();
+  // --- add data here
+  dataHandler.setTrainInfoData(loadJSON('staticKvBData.json'));
+  dataHandler.setFooterStrings(["Diese Woche kümmern sich Hendrik und Jakob um die Ordnung hier", "Unser Tolleyball-Grand-Champion ist ... trommelwirbel ... Jan!!","So langsam lässt die Kreativleistung nach, der Kaffeestand müsste nachgefüllt werden"]);
+  // ---
 }
-
-// Called once when the program starts.
-// See https://p5js.org/reference/#/p5/setup
 function setup() {
-  createCanvas(800, 800);
-  covidSetup();
-  peanutsSetup();
+    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[10,20,6]);
+    displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[10,20,6]);
+    displayBuilder.setupDisplay();
+    //displayBuilder2.setupDisplay();
+    dataSource = true;
 }
-
-// Called over and over to refresh your visualisation.
-// See https://p5js.org/reference/#/p5/draw
 function draw() {
   background(0);
-  peanutsDraw();
-  covidDraw();
+
+  // #### draw the display
+  displayBuilder.displayDraw();
+  displayBuilder.updatingForAnimation();
+  // ####
+
+  console.log(frameRate());
+}
+function keyPressed() {
+  if (key === 'x' || key === 'X') {
+    dataSource = !dataSource;
+  }
 }

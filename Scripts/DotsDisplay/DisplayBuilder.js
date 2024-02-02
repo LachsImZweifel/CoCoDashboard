@@ -1,10 +1,12 @@
 class DisplayBuilder {
-    constructor(dataHandler, columnArray) {
-        this.dataHandler = dataHandler;
+    constructor(contentArray, footerContentArray, columnArray) {
+        this.contentArray = contentArray;
+        this.footerArray = footerContentArray;
         this.columns = columnArray;
         this.x = 0;
         this.lastUpdateTime = 0;
         this.innerCanvasWidthDots =Constants.columnWidthDots * (this.columns[0] + this.columns[1] + this.columns[2]) + Constants.textBoxSpacingDots * (this.columns.length-2);
+        this.test=0;
     }
 
     setupDisplay() {
@@ -12,7 +14,10 @@ class DisplayBuilder {
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
         this.createBlankRows(2);
         for (let i = 0; i < Constants.contentRowCount; i++) {
-            this.createRow(dataHandler.getTrainInfoArray()[i]);
+            if (i === this.contentArray.length) { // ca drei Jahre gebraucht um das rauszufinden
+                break;
+            }
+            this.createRow(this.contentArray[i]);
         }
         this.createBlankRows(2);
         this.createRow(this.buildFooter());
@@ -40,7 +45,6 @@ class DisplayBuilder {
                 }
                 y+= Constants.led;
             }
-            //console.log(frameRate());
         }
     }
     updatingForAnimation() {
@@ -106,6 +110,7 @@ class DisplayBuilder {
     }
 
     createRow(stringArray) {
+        this.test++;
         let resultRows = Array(7).fill('');
         let fullRow = [];
         let columnSpacing = '';
@@ -165,7 +170,7 @@ class DisplayBuilder {
         return newRow.slice(offset) + newRow.substring(0, offset);
     }
     buildFooter() {
-        let footerStrings = this.dataHandler.getFooterStrings();
+        let footerStrings = this.footerArray;
         let finalFooterString = '**';
         for (let i = 0; i < footerStrings.length; i++) {
             finalFooterString += ' ' + footerStrings[i] + " **";
