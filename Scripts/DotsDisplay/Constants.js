@@ -1,7 +1,11 @@
 class Constants {
     // Color Settings
     static colorOn = '#ffae00';
-    static colorOff = '#2d2d2d';
+    static colorOff = '#363636';
+
+    static tuewas(){
+        return 'tuewas';
+    }
 
     // LED Settings (will change the size of the dots/pixels and have impact on the canvas size)
     static ledLampSize = 3;

@@ -6,6 +6,7 @@ let dataSource;
 function preload() {
   Constants.bitmapFont = loadJSON('BitMapCharSet.json');
   dataHandler = new DataHandler();
+
   // --- add data here
   dataHandler.setTrainInfoData(loadJSON('staticKvBData.json'));
   dataHandler.setFooterStrings(["Diese Woche kümmern sich Hendrik und Jakob um die Ordnung hier", "Unser Tolleyball-Grand-Champion ist ... trommelwirbel ... Jan!!","So langsam lässt die Kreativleistung nach, der Kaffeestand müsste nachgefüllt werden"]);

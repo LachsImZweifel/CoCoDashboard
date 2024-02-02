@@ -8,7 +8,6 @@ class DisplayBuilder {
         this.innerCanvasWidthDots =Constants.columnWidthDots * (this.columns[0] + this.columns[1] + this.columns[2]) + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.test=0;
     }
-
     setupDisplay() {
         Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
