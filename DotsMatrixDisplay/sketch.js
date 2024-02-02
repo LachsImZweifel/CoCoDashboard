@@ -7,18 +7,16 @@ function preload() {
   dataHandler = new DataHandler();
   // --- add data here
   dataHandler.setTrainInfoData(loadJSON('staticKvBData.json'));
+  dataHandler.setFooterStrings(["Diese Woche kümmern sich Hendrik und Jakob um die Ordnung hier", "Unser Tolleyball-Grand-Champion ist ... trommelwirbel ... Jan!!","So langsam lässt die Kreativleistung nach, der Kaffeestand müsste nachgefüllt werden"]);
   // ---
-  displayBuilder = new DisplayBuilder(dataHandler,[5,17,6]);
+  displayBuilder = new DisplayBuilder(dataHandler,[10,20,6]);
 }
 
 
 
 function setup() {
     displayBuilder.setupDisplay();
-  // ####### ADD DATA HERE #######
-
-  dataSource = true;
-
+    dataSource = true;
 }
 function draw() {
   background(0);

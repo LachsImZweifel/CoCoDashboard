@@ -29,8 +29,8 @@ class Constants {
 
     // Calculation of canvas height
     static heightOfContentDots = ((this.totalRowCount-1) * (this.rowHeightDots + this.spaceBetweenRowsDots) + this.rowHeightDots );
-    static heightOfFooterDots = this.rowHeightDots * (this.footerRows + this.spaceBetweenRowsDots);
-    static canvasHeight = (this.heightOfContentDots + this.heightOfFooterDots) * this.led + this.marginTopBottomDots * 2;
+    static heightOfFooterDots = this.footerRows;
+    static canvasHeight = (this.heightOfContentDots + this.heightOfFooterDots + this.spacesBetweenCharsDots * 7) * this.led;
 
     // Calculation of canvas width
     static canvasWidth = 800;

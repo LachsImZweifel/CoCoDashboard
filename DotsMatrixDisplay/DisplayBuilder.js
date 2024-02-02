@@ -4,14 +4,19 @@ class DisplayBuilder {
         this.columns = columnArray;
         this.x = 0;
         this.lastUpdateTime = 0;
+        this.innerCanvasWidthDots =Constants.columnWidthDots * (this.columns[0] + this.columns[1] + this.columns[2]) + Constants.textBoxSpacingDots * (this.columns.length-2);
     }
 
     setupDisplay() {
-        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + Constants.columnWidthDots * (this.columns[0] + this.columns[1] + this.columns[2]) + Constants.textBoxSpacingDots * 2);
+        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
+        this.createBlankRows(2);
         for (let i = 0; i < Constants.contentRowCount; i++) {
             this.createRow(dataHandler.getTrainInfoArray()[i]);
         }
+        this.createBlankRows(2);
+        this.createRow(this.buildFooter());
+        this.createBlankRows(1);
         background(0);
     }
 
@@ -24,7 +29,6 @@ class DisplayBuilder {
                 for (const char of row) {
                     if (char === '1') {
                         fill(Constants.colorOn); // Turn on the LED
-
                     } else {
                         fill(Constants.colorOff); // Turn off the LED
                     }
@@ -57,6 +61,10 @@ class DisplayBuilder {
     createRowOutput(rowArray) {
         let resultRows = Array(7).fill('');
         let columnSpacing = '';
+        let margin = '';
+        for (let i = 0; i < Constants.marginLeftRightDots; i++) {
+            margin += '0';
+        }
         if (rowArray.length !== 1) {
             for (let i = 0; i < Constants.columnWidthDots; i++) {
                 columnSpacing += '0';
@@ -67,26 +75,34 @@ class DisplayBuilder {
                     resultRows = resultRows.map(row => row + columnSpacing);
                 }
             }
-            let margin = '';
-            for (let i = 0; i < Constants.marginLeftRightDots; i++) {
-                margin += '0';
-            }
             resultRows = resultRows.map(row => margin + row + margin);
             return resultRows;
         } else {
-            return rowArray[0];
+            if (rowArray[0].map(str => str !== "" && Number(str) === 0).every(value => value === true)){ // check if its a blank line
+                return rowArray[0];
+            } else { // it must be a footer line
+                let combinedArray = Array(7).fill('');
+                combinedArray = resultRows.map((item, index) => item + rowArray[0][index]);
+                // wieso wird rowArray[0] nach einiger Zeit auf 100 bzw trim(width) gekürzt?
+                for (let i = 0; i < resultRows.length; i++) {
+                    combinedArray[i] = this.trimRows(combinedArray[i], this.innerCanvasWidthDots);
+                }
+                return combinedArray.map(row => margin + row + margin);
+            }
         }
 
     }
 
-    createBlankRows() {
+    createBlankRows(times) {
         let blankRows = Array(Constants.spaceBetweenRowsDots).fill('');
         for (let i = 0; i < Constants.spaceBetweenRowsDots; i++) {
             blankRows[i] = '0'.repeat(Constants.canvasWidth);
         }
         let arrayAroundBlankRows = [];
         arrayAroundBlankRows.push(blankRows);
-        Constants.fullRows.push(arrayAroundBlankRows);
+        for (let i = 0; i < (times || 1); i++) {
+            Constants.fullRows.push(arrayAroundBlankRows);
+        }
     }
 
     createRow(stringArray) {
@@ -126,12 +142,12 @@ class DisplayBuilder {
         for (let i = 0; i < width - row.length; i++) {
             zeros += '0';
         }
-        row = row + zeros;
-        if (row.length <= width) {
-            return row
+        let manipulatedRow = row + zeros;
+        if (manipulatedRow.length <= width) {
+            return manipulatedRow;
         }
-        row = this.animateTextInCell(row).slice(0, width);
-        return row;
+        manipulatedRow = this.animateTextInCell(manipulatedRow).slice(0, width);
+        return manipulatedRow;
     }
 
     animateTextInCell(row) {
@@ -143,10 +159,17 @@ class DisplayBuilder {
         let newRow = row + zeros;
 
         let offset = this.x % newRow.length;
-
         if (this.x > 2147483647) { // Reset if x get to big ?
             this.x = 0;
         }
         return newRow.slice(offset) + newRow.substring(0, offset);
+    }
+    buildFooter() {
+        let footerStrings = this.dataHandler.getFooterStrings();
+        let finalFooterString = '**';
+        for (let i = 0; i < footerStrings.length; i++) {
+            finalFooterString += ' ' + footerStrings[i] + " **";
+        }
+        return [finalFooterString];
     }
 }

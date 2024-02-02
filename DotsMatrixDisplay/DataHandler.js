@@ -4,6 +4,7 @@ class DataHandler {
         this.trainInfoArray = [];
         this.calendarData;
         this.calendarArray = [];
+        this.footerStrings = [];
     }
     setCalendarData(calendarData) {
         this.calendarData = calendarData;
@@ -38,5 +39,11 @@ class DataHandler {
             linie = [];
         }
         return this.trainInfoArray;
+    }
+    setFooterStrings(footerStrings) {
+        this.footerStrings = footerStrings;
+    }
+    getFooterStrings() {
+        return this.footerStrings;
     }
 }
