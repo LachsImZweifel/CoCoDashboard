@@ -7,6 +7,13 @@ Die technische Basis zur Umsetzung ist [p5.js](https://p5js.org/).
 Nach jedem `git push` wird die neue Version ein paar Minuten später hier zu sehen sein:
 <https://students.pages.coco.study/ws2324/project-explore-1/pe1-coco-dashboard-1/>
 
+# APIs:
+- **KVB:**
+- http://cocos01.gm.fh-koeln.de:1880/stations/get/Keupstr
+- http://cocos01.gm.fh-koeln.de:1880/stations/get/Wiener-Platz
+- http://cocos01.gm.fh-koeln.de:1880/stations/get/Koeln-Muelheim
+- http://cocos01.gm.fh-koeln.de:1880/stations/get/all (fügt alle Stationen zusammen und sortiert sie nach der Abfahrtzeit)
+
 Entwicklung auf dem eigenen Rechner
 -----------------------------------
 
