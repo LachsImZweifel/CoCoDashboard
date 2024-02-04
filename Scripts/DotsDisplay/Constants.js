@@ -26,7 +26,7 @@ class Constants {
     static marginTopBottomDots = this.marginLeftRightDots;
 
     // Counts of Rows
-    static contentRowCount = 7
+    static contentRowCount = 12
     static emptyLineBetweenContentAndFooter = 1;
     static footerRows = 1;
     static totalRowCount = this.contentRowCount + this.emptyLineBetweenContentAndFooter + this.footerRows;
