@@ -30,6 +30,7 @@ class DataHandler {
             print(this.trainInfoData.events[i].line.number);
             linie.push(this.trainInfoData.events[i].line.number);
             linie.push(this.trainInfoData.events[i].line.direction)
+            linie.push(this.trainInfoData.events[i].stopPoint.name)
             if (this.trainInfoData.events[i].departure.estimate == null) {
                 linie.push(this.trainInfoData.events[i].departure.timetable)
             } else {
