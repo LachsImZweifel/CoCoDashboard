@@ -5,9 +5,18 @@ class DisplayBuilder {
         this.columns = columnArray;
         this.x = 0;
         this.lastUpdateTime = 0;
-        this.innerCanvasWidthDots =Constants.columnWidthDots * (this.columns[0] + this.columns[1] + this.columns[2]) + Constants.textBoxSpacingDots * (this.columns.length-2);
+        const sum = this.sumArray(this.columns);
+        this.innerCanvasWidthDots =Constants.columnWidthDots * sum + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.test=0;
     }
+    sumArray(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+
     setupDisplay() {
         Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
