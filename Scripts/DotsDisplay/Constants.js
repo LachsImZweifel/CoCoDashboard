@@ -1,7 +1,7 @@
 class Constants {
     // Color Settings
     static colorOn = '#ffae00';
-    static colorOff = '#363636';
+    static colorOff = '#181818';
 
     static tuewas(){
         return 'tuewas';

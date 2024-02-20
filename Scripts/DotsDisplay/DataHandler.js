@@ -12,11 +12,20 @@ class DataHandler {
     getCalendarArray() {
         // ####### REPLACE THIS #######
         this.calendarArray = [
-            ["GEN5", "Präsentation", "01.03.24"],
-            ["Alle", "Coco-Fahrt", "08.03.24"],
-            ["GEN3", "Iteration", "10.10.24"],
-            ["Alle", "BlaBlaBlaBluppBLupp", "08.11.24"],
-            ["Alle", "Coco wird zum besten Studiengang aller Zeiten ernannt", "20.03.31"],
+            ["SCH 22", "Studieninfo FLINTA* vor Ort", "02.01.24"],
+            ["CGL 2. Stock 'Aquarium'", "Kathia Talk @Clash of Realities", "05.08.22"],
+            ["CGL 2. Stock 'Aquarium'", "Iteration 2023", "05.10.23"],
+            ["CGL 2. Stock 'Aquarium'", "KISD Parcours Ausstellung", "05.06.23"],
+            ["CGL 2. Stock 'Aquarium'", "Workshop: Creative Coding Girls // Teil 2", "06.02.22"],
+            ["CGL 2. Stock 'Aquarium'", "Studieninfo-Session", "01.03.24"],
+            ["SCH 22", "techF* - Event", "05.10.23"],
+            ["SCH 22", "CoCo Iteration", "05.09.22"],
+            ["SCH 22", "Girls Day @ CoCo", "04.03.23"],
+            ["SCH 22", "Workshop: Creative Coding Girls // Teil 1", "05.02.22"],
+            ["SCH 22", "Studieninfo-Session", "02.01.24"],
+            ["SCH 22", "InfoTalk & InfoWalk", "01.02.23"]
+
+
         ];
         // ############################
         return this.calendarArray;

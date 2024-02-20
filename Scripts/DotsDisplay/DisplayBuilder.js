@@ -18,7 +18,7 @@ class DisplayBuilder {
     }
 
     setupDisplay() {
-        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
+        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 3 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
         this.createBlankRows(2);
         for (let i = 0; i < Constants.contentRowCount; i++) {
@@ -97,9 +97,9 @@ class DisplayBuilder {
                 combinedArray = resultRows.map((item, index) => item + rowArray[0][index]);
                 // wieso wird rowArray[0] nach einiger Zeit auf 100 bzw trim(width) gekürzt?
                 for (let i = 0; i < resultRows.length; i++) {
-                    combinedArray[i] = this.trimRows(combinedArray[i], this.innerCanvasWidthDots);
+                    combinedArray[i] = this.trimRows(combinedArray[i], this.innerCanvasWidthDots + Constants.marginLeftRightDots -1);
                 }
-                return combinedArray.map(row => margin + row + margin);
+                return combinedArray.map(row => margin + row + margin + margin );
             }
         }
 
