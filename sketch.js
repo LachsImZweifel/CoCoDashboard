@@ -1,13 +1,20 @@
 let dataHandler;
 let displayBuilder;
 let dataSource = true;
+let cleaningLoader;
+let week = 2;
 
 function preload() {
   Constants.bitmapFont = loadJSON('BitMapCharSet.json');
   dataHandler = new DataHandler();
+  cleaningLoader = new CleaningLoader();
+  cleaningLoader.load();
+  let footerStrings = ["Unser Teevorrat ist bei 100%", "Der Kaffee müsste bald aufgefüllt werden, es sind nur noch 20 % verfügbar"];
+
+  footerStrings.push(cleaningLoader.getCleanersSentence(1));
   // --- add data here
   dataHandler.setTrainInfoData(loadJSON('http://cocos01.gm.fh-koeln.de:1880/stations/get/all'));
-  dataHandler.setFooterStrings(["Aufräumliste: Diese Woche stehen Jan und Hendrik auf dem Plan","Unser Teevorrat ist bei 100%", "Der Kaffee müsste bald aufgefüllt werden, es sind nur noch 20 % verfügbar"]);
+  dataHandler.setFooterStrings(footerStrings);
   // ---
 }
 function setup() {
