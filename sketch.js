@@ -1,7 +1,6 @@
 let dataHandler;
 let displayBuilder;
-let displayBuilder2;
-let dataSource;
+let dataSource = true;
 
 function preload() {
   Constants.bitmapFont = loadJSON('BitMapCharSet.json');
@@ -12,26 +11,31 @@ function preload() {
   // ---
 }
 function setup() {
-    //displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[3,20,8,6]);
-    displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[7,22,8]);
-    //displayBuilder.setupDisplay();
-    displayBuilder2.setupDisplay();
+    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[3,20,8,6]);
+    displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[7,24,8]);
+    displayBuilder.setupDisplay();
     dataSource = true;
 }
 function draw() {
   background(0);
 
   // #### draw the display
-  //displayBuilder.displayDraw();
-  //displayBuilder.updatingForAnimation();
-    displayBuilder2.displayDraw();
-    displayBuilder2.updatingForAnimation();
-  // ####
-
+    if (dataSource) {
+        displayBuilder.displayDraw();
+        displayBuilder.updatingForAnimation();
+    } else {
+        displayBuilder2.displayDraw();
+        displayBuilder2.updatingForAnimation();
+    }
   // console.log(frameRate());
 }
 function keyPressed() {
   if (key === 'x' || key === 'X') {
     dataSource = !dataSource;
+    if (dataSource){
+        displayBuilder.setupDisplay();
+    } else {
+        displayBuilder2.setupDisplay();
+    }
   }
 }

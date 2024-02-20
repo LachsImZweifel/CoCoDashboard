@@ -8,6 +8,7 @@ class DisplayBuilder {
         const sum = this.sumArray(this.columns);
         this.innerCanvasWidthDots =Constants.columnWidthDots * sum + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.test=0;
+        this.fullRows = [];
     }
     sumArray(arr) {
         let sum = 0;
@@ -18,7 +19,7 @@ class DisplayBuilder {
     }
 
     setupDisplay() {
-        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 3 + this.innerCanvasWidthDots);
+        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
         this.createBlankRows(2);
         for (let i = 0; i < Constants.contentRowCount; i++) {
@@ -36,7 +37,7 @@ class DisplayBuilder {
 
     displayDraw() {
         let y = Constants.ledSpacing;
-        for (const element of Constants.fullRows) {
+        for (const element of this.fullRows) {
             for (const row of this.createRowOutput(element)) {
                 let x = Constants.ledSpacing;
                 for (const char of row) {
@@ -97,9 +98,9 @@ class DisplayBuilder {
                 combinedArray = resultRows.map((item, index) => item + rowArray[0][index]);
                 // wieso wird rowArray[0] nach einiger Zeit auf 100 bzw trim(width) gekürzt?
                 for (let i = 0; i < resultRows.length; i++) {
-                    combinedArray[i] = this.trimRows(combinedArray[i], this.innerCanvasWidthDots + Constants.marginLeftRightDots -1);
+                    combinedArray[i] = this.trimRows(combinedArray[i], this.innerCanvasWidthDots);
                 }
-                return combinedArray.map(row => margin + row + margin + margin );
+                return combinedArray.map(row => margin + row + margin );
             }
         }
 
@@ -113,7 +114,7 @@ class DisplayBuilder {
         let arrayAroundBlankRows = [];
         arrayAroundBlankRows.push(blankRows);
         for (let i = 0; i < (times || 1); i++) {
-            Constants.fullRows.push(arrayAroundBlankRows);
+            this.fullRows.push(arrayAroundBlankRows);
         }
     }
 
@@ -131,7 +132,7 @@ class DisplayBuilder {
             fullRow.push(resultRows);
             resultRows = Array(7).fill('');
         }
-        Constants.fullRows.push(fullRow);
+        this.fullRows.push(fullRow);
         this.createBlankRows(); // create a line spacing
     }
 

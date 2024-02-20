@@ -41,8 +41,5 @@ class Constants {
 
     // Animation
     static displayUpdatingRate = 20;
-
-    // Data
-    static fullRows = [];
     static bitmapFont;
 }
