@@ -9,8 +9,8 @@ class DisplayBuilder {
         this.innerCanvasWidthDots =Constants.columnWidthDots * sum + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.test=0;
         this.fullRows = [];
-        this.textbox = new TextBox();
         this.textBoxArray = [];
+        this.footerTextBox;
     }
     sumArray(arr) {
         let sum = 0;
@@ -22,7 +22,6 @@ class DisplayBuilder {
     setupDisplay() {
         Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-        this.textbox.createTextCell('Warum die Idee super ist');
     }
 
     displayDraw() {
@@ -30,6 +29,7 @@ class DisplayBuilder {
         for (let i = 0; i < this.textBoxArray.length; i++) {
             this.textBoxArray[i].draw();
         }
+        this.footerTextBox.draw();
     }
 
     fillTextBoxes() {
@@ -41,12 +41,12 @@ class DisplayBuilder {
                 textBox.createTextCell(this.contentArray[i][j]);
                 this.textBoxArray.push(textBox);
                 let dist = Constants.columnWidthDots * this.columns[j] + Constants.columnWidthDots;
-                console.log(dist);
                 x += dist;
             }
             // Aktualisiere y für die nächste Zeile
             y += Constants.rowHeightDots + Constants.spaceBetweenRowsDots;
         }
+        this.fillFooter();
     }
     fillDisplayWithDots() {
         for (let i = 0; i < Constants.canvasWidth; i += Constants.led) {
@@ -56,5 +56,20 @@ class DisplayBuilder {
                 square(i, j, Constants.ledLampSize);
             }
         }
+    }
+
+    fillFooter() {
+        let y = Constants.canvasHeightInDots - Constants.marginTopBottomDots - Constants.rowHeightDots;
+        let x = Constants.marginLeftRightDots;
+        let footerString = '* ';
+        for (let i = 0; i < this.footerArray.length; i++) {
+            if (i === this.footerArray.length - 1) {
+                footerString += this.footerArray[i]
+                break;
+            }
+            footerString += this.footerArray[i] + ' * ';
+        }
+        this.footerTextBox = new TextBox(x, y, this.innerCanvasWidthDots);
+        this.footerTextBox.createTextCell(footerString);
     }
 }

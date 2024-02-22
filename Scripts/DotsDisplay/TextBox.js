@@ -1,12 +1,14 @@
 class TextBox {
     constructor(x,y,maxWidth) {
         this.animated = false;
+        this.lastUpdateTime = millis();
         this.isDrawn = false;
         this.bitmap = [];
         this.startXInLeds = x;
         this.startYInLeds = y;
         this.maxWidth = maxWidth;
         this.offset = 0;
+        this.direction = 1;
     }
 
     draw() {
@@ -37,29 +39,37 @@ class TextBox {
         }
     }
     drawAnimated() {
-        let y = this.startYInLeds * Constants.led;
-        for (const row of this.bitmap) {
-            let x = this.startXInLeds * Constants.led + this.offset;
-            for( let i = this.offset; i < this.maxWidth; i++) {
-                if (row[i] === '1') {
-                    fill(Constants.colorOn); // Turn on the LED
-                } else {
-                    fill(Constants.colorOff); // Turn off the LED
+        if(!this.isDrawn) {
+            let y = this.startYInLeds * Constants.led;
+            for (const row of this.bitmap) {
+                let x = this.startXInLeds * Constants.led;
+                for( let i = 0; i < this.maxWidth; i++) {
+                    if (row[i+this.offset] === '1') {
+                        fill(Constants.colorOn); // Turn on the LED
+                    } else {
+                        fill(Constants.colorOff); // Turn off the LED
+                    }
+                    noStroke();
+                    square(x, y, Constants.ledLampSize);
+                    console.log(this.startYInLeds);
+                    x += Constants.led;
                 }
-                noStroke();
-                square(x, y, Constants.ledLampSize);
-                x += Constants.led;
+                y += Constants.led;
+                this.isDrawn = true;
             }
-            y += Constants.led;
         }
-        if (this.offset > this.bitmap[0].length) {
-            this.offset = 0;
-        } else {
-            this.offset += 1;
+        if (this.offset >= this.maxWidth || this.offset < 0) {
+            this.direction *= -1;
         }
+        let currentTime = millis();
+        if (currentTime - this.lastUpdateTime >= Constants.displayUpdatingRate) {
+            this.offset += this.direction ;
+            this.lastUpdateTime = currentTime;
+            this.isDrawn = false;
+        }
+
     }
     createTextCell(str) {
-        console.log(str);
         let resultRows = Array(7).fill('');
         for (let char of str) {
             let pattern = this.getCharBitPattern(char.toUpperCase());
@@ -81,7 +91,6 @@ class TextBox {
     checkIfAnimationIsNeeded() {
         let width = this.bitmap[0].length;
         if (width > this.maxWidth) {
-            console.log("width: " + width + " maxWidth: " + this.maxWidth);
             this.animated = true;
         }
     }

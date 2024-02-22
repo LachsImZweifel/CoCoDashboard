@@ -3,10 +3,6 @@ class Constants {
     static colorOn = '#ffae00';
     static colorOff = '#181818';
 
-    static tuewas(){
-        return 'tuewas';
-    }
-
     // LED Settings (will change the size of the dots/pixels and have impact on the canvas size)
     static ledLampSize = 3;
     static ledSpacing = 1;
@@ -34,12 +30,13 @@ class Constants {
     // Calculation of canvas height
     static heightOfContentDots = ((this.totalRowCount-1) * (this.rowHeightDots + this.spaceBetweenRowsDots) + this.rowHeightDots );
     static heightOfFooterDots = this.footerRows;
+    static canvasHeightInDots = this.heightOfContentDots + this.heightOfFooterDots + this.spacesBetweenCharsDots * 7
     static canvasHeight = (this.heightOfContentDots + this.heightOfFooterDots + this.spacesBetweenCharsDots * 7) * this.led;
 
     // Calculation of canvas width
     static canvasWidth = 800;
 
     // Animation
-    static displayUpdatingRate = 20;
+    static displayUpdatingRate = 7;
     static bitmapFont;
 }
