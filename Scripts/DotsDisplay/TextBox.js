@@ -40,8 +40,8 @@ class TextBox {
         let y = this.startYInLeds * Constants.led;
         for (const row of this.bitmap) {
             let x = this.startXInLeds * Constants.led + this.offset;
-            for (const char of row) {
-                if (char === '1') {
+            for( let i = this.offset; i < this.maxWidth; i++) {
+                if (row[i] === '1') {
                     fill(Constants.colorOn); // Turn on the LED
                 } else {
                     fill(Constants.colorOff); // Turn off the LED
@@ -74,7 +74,6 @@ class TextBox {
         this.bitmap = resultRows;
         this.checkIfAnimationIsNeeded();
     }
-
     getCharBitPattern(char) {
         const defaultPattern = ["00000", "00000", "00000", "00000", "00000", "00000", "00000"];
         return Constants.bitmapFont[char] || defaultPattern;
