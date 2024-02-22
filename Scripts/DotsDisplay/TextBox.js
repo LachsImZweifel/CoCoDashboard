@@ -8,7 +8,6 @@ class TextBox {
         this.startYInLeds = y;
         this.maxWidth = maxWidth;
         this.offset = 0;
-        this.direction = 1;
     }
 
     draw() {
@@ -59,14 +58,15 @@ class TextBox {
                 this.isDrawn = true;
             }
         }
-        if (this.offset >= this.maxWidth || this.offset < 0) {
-            this.direction *= -1;
-        }
         let currentTime = millis();
         if (currentTime - this.lastUpdateTime >= Constants.displayUpdatingRate) {
-            this.offset += this.direction ;
+            this.offset += 1;
             this.lastUpdateTime = currentTime;
             this.isDrawn = false;
+
+            if (this.offset >= this.bitmap[0].length) {
+                this.offset = 0;
+            }
         }
 
     }

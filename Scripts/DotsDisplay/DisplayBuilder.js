@@ -54,7 +54,6 @@ class DisplayBuilder {
             }
         }
     }
-
     fillFooter() {
         let y = Constants.canvasHeightInDots - Constants.marginTopBottomDots - Constants.rowHeightDots;
         let x = Constants.marginLeftRightDots;

@@ -22,7 +22,7 @@ class Constants {
     static marginTopBottomDots = this.marginLeftRightDots;
 
     // Counts of Rows
-    static contentRowCount = 12
+    static contentRowCount = 20
     static emptyLineBetweenContentAndFooter = 1;
     static footerRows = 1;
     static totalRowCount = this.contentRowCount + this.emptyLineBetweenContentAndFooter + this.footerRows;
@@ -37,6 +37,6 @@ class Constants {
     static canvasWidth = 800;
 
     // Animation
-    static displayUpdatingRate = 25;
+    static displayUpdatingRate = 35;
     static bitmapFont;
 }
