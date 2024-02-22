@@ -4,11 +4,8 @@ class DisplayBuilder {
         this.footerArray = footerContentArray;
         this.columns = columnArray;
         this.x = 0;
-        this.lastUpdateTime = 0;
-        const sum = this.sumArray(this.columns);
-        this.innerCanvasWidthDots =Constants.columnWidthDots * sum + Constants.textBoxSpacingDots * (this.columns.length-2);
-        this.test=0;
-        this.fullRows = [];
+        this.sum = this.sumArray(this.columns);
+        this.innerCanvasWidthDots = Constants.columnWidthDots * this.sum + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.textBoxArray = [];
         this.footerTextBox;
     }
@@ -20,7 +17,7 @@ class DisplayBuilder {
         return sum;
     }
     setupDisplay() {
-        Constants.canvasWidth = Constants.led * (Constants.marginLeftRightDots * 2 + this.innerCanvasWidthDots);
+        Constants.canvasWidth = (this.innerCanvasWidthDots + Constants.marginLeftRightDots * 4) * Constants.led;
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
     }
 

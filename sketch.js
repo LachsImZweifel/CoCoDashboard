@@ -18,7 +18,7 @@ function preload() {
   // ---
 }
 function setup() {
-    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[10,20,10,6]);
+    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[10,20,4,6]);
     displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[7,24,8]);
     displayBuilder.setupDisplay();
     displayBuilder2.setupDisplay();
