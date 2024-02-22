@@ -5,6 +5,7 @@ class DataHandler {
         this.calendarData;
         this.calendarArray = [];
         this.footerStrings = [];
+        this.setCoffeeSpreadSheetFullURl()
     }
     setCalendarData(calendarData) {
         this.calendarData = calendarData;
@@ -55,5 +56,21 @@ class DataHandler {
     }
     getFooterStrings() {
         return this.footerStrings;
+    }
+
+    setCoffeeInfoData(coffeeInfoData){
+        this.coffeeInfoData = coffeeInfoData;
+        console.log(coffeeInfoData);
+    }
+
+    setCoffeeSpreadSheetFullURl(fullCoffeeSpreadSheetURL){
+        let SheetId = '1U71TdEqhEcNnCbI8gDZZnA7Pmmq9fDy_FmoafrTGvmM'
+        let SheetTitle = 'Coffee'
+        let SheetRange1 = 'C1:F2'
+
+        this.fullCoffeeSpreadSheetURL = 'https://docs.google.com/spreadsheets/d/' + SheetId + '/gviz/tq?sheet=' + SheetTitle + '&range=' +SheetRange1;
+    }
+    getCoffeeSpreadSheetFullURL(){
+        return this.fullCoffeeSpreadSheetURL;
     }
 }

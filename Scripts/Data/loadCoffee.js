@@ -52,6 +52,7 @@ class loadCoffee {
 
     //Nachprüfen ob einer der Füllstände unter 25% sind, dementsprechend eine Nachricht ausgeben.
     displaySentences() {
+        console.log(this.c);
         let finalLevelText = "";
 
         if (this.coffeeLevel < 25) {

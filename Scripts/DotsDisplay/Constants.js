@@ -37,6 +37,6 @@ class Constants {
     static canvasWidth = 800;
 
     // Animation
-    static displayUpdatingRate = 7;
+    static displayUpdatingRate = 25;
     static bitmapFont;
 }
