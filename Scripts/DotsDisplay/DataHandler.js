@@ -7,9 +7,11 @@ class DataHandler {
         this.footerStrings = [];
         this.setCoffeeSpreadSheetFullURl()
     }
-    setCalendarData(calendarData) {
-        this.calendarData = calendarData;
+    setCalendarArray(calendarArray){
+        console.log("(Handler): " + calendarArray.length);
+        this.calendarArray = calendarArray;
     }
+
     getCalendarArray() {
         // ####### REPLACE THIS #######
         this.calendarArray = [

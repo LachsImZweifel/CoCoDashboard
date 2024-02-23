@@ -1,17 +1,11 @@
-// for handling data
-let dataHandler;
-
-// loader Objects
+let calendarLoader;
 let coffeeLoader;
 let cleaningLoader;
-let isSetupFinished = false;
-
-// for drawing
-let display1;
-let display2;
+let dataHandler;
+let displayBuilder;
+let displayBuilder2;
 let dataSource;
-
-
+let isSetupFinished = false;
 
 function preload() {
     Constants.bitmapFont = loadJSON('BitMapCharSet.json');
@@ -26,18 +20,12 @@ function preload() {
         let SheetTitle = 'Coffee'
         let SheetRange1 = 'C1:F2'
         dataHandler.setCoffeeSpreadSheetFullURl('https://docs.google.com/spreadsheets/d/' + SheetId + '/gviz/tq?sheet=' + SheetTitle + '&range=' +SheetRange1);
-
-        let footerStrings = [];
-
         await coffeeLoader.startTranslation();
         const coffeeInformation = await coffeeLoader.displaySentences();
-        footerStrings.push(coffeeInformation);
         console.log(coffeeInformation);
 
         await cleaningLoader.load();
-        const cleaningInformation = await cleaningLoader.getCleanersSentence(2);
-        footerStrings.push(cleaningInformation);
-        dataHandler.setFooterStrings(footerStrings);
+        const cleaningInformation = await cleaningLoader.getCleanersSentence(3);
         console.log(cleaningInformation);
 
         const trainInfoData = await loadJSON('http://cocos01.gm.fh-koeln.de:1880/stations/get/all');
@@ -55,46 +43,34 @@ function preload() {
 
     return loadDataPromise;
 }
+
 function setup() {
     // Warte auf den `windowPreload`-Event, bevor das eigentliche Setup beginnt
     window.addEventListener('windowPreload', () => {
-        console.log("setup started");
+        console.log("setup started")
+        //displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[3,20,8,6]);
+        displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[5,25,6]);
+        //displayBuilder.setupDisplay();
+        displayBuilder2.setupDisplay();
         dataSource = true;
-        // display1
-        display1 = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[4,23,8,6]);
-        display1.fillTextBoxes();
-        display1.fillDisplayWithDots();
-        //display2
-        display2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[8,25,8]);
-        display2.fillTextBoxes();
-        display2.fillDisplayWithDots();
-        // setup
-        background(0);
-        createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-        display1.fillDisplayWithDots();
         isSetupFinished = true;
         console.log("Setup finished");
     });
 }
 function draw() {
     if(isSetupFinished){
-        if (dataSource) {
-            display1.displayDraw();
-        } else {
-            display2.displayDraw();
-        }
-    }
+        background(0);
 
+        // #### draw the display
+        displayBuilder2.displayDraw();
+        displayBuilder2.updatingForAnimation();
+        // ####
+
+        // console.log(frameRate());
+    }
 }
 function keyPressed() {
-  if (key === 'x' || key === 'X') {
-    dataSource = !dataSource;
-    if (dataSource){
-        display1.fillDisplayWithDots();
-        display1.redrawAllTextBoxes()
-    } else {
-        display2.fillDisplayWithDots();
-        display2.redrawAllTextBoxes();
+    if (key === 'x' || key === 'X') {
+        dataSource = !dataSource;
     }
-  }
 }
