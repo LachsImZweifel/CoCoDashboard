@@ -32,19 +32,16 @@ function preload() {
         await coffeeLoader.startTranslation();
         const coffeeInformation = await coffeeLoader.displaySentences();
         footerStrings.push(coffeeInformation);
-        console.log(coffeeInformation);
 
         await cleaningLoader.load();
         const cleaningInformation = await cleaningLoader.getCleanersSentence(2);
         footerStrings.push(cleaningInformation);
         dataHandler.setFooterStrings(footerStrings);
-        console.log(cleaningInformation);
 
         const trainInfoData = await loadJSON('http://cocos01.gm.fh-koeln.de:1880/stations/get/all');
         dataHandler.setTrainInfoData(trainInfoData);
 
         const calendarArray = await calendarLoader.getCalendarArray();
-        console.log("(preload): "+ calendarArray.length)
         dataHandler.setCalendarArray(calendarArray);
 
         const windowPreloadEvent = new Event('windowPreload');
@@ -58,7 +55,6 @@ function preload() {
 function setup() {
     // Warte auf den `windowPreload`-Event, bevor das eigentliche Setup beginnt
     window.addEventListener('windowPreload', () => {
-        console.log("setup started");
         dataSource = true;
         // display1
         display1 = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[4,23,8,6]);
@@ -73,7 +69,6 @@ function setup() {
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
         display1.fillDisplayWithDots();
         isSetupFinished = true;
-        console.log("Setup finished");
     });
 }
 function draw() {

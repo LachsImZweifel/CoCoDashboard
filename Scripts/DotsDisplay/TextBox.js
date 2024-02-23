@@ -75,9 +75,6 @@ class TextBox {
                     }
                     noStroke();
                     square(x, y, Constants.ledLampSize);
-                    // Warum macht das den code langsam????
-                    // console.log(this.startYInLeds);
-                    //
                     x += Constants.led;
                 }
                 y += Constants.led;

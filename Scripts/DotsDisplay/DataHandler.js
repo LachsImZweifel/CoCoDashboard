@@ -8,7 +8,6 @@ class DataHandler {
         this.setCoffeeSpreadSheetFullURl()
     }
     setCalendarArray(calendarArray){
-        console.log("(Handler): " + calendarArray.length);
         this.calendarArray = calendarArray;
     }
 
@@ -65,7 +64,6 @@ class DataHandler {
 
     setCoffeeInfoData(coffeeInfoData){
         this.coffeeInfoData = coffeeInfoData;
-        console.log(coffeeInfoData);
     }
 
     setCoffeeSpreadSheetFullURl(fullCoffeeSpreadSheetURL){

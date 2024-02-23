@@ -39,7 +39,6 @@ class CalendarLoader {
 
             cal.getAllSubcomponents('vevent').forEach(event => {
                 const e = new ICAL.Event(event);
-                //console.log(e.summary);
                 this.eventName = event.getFirstPropertyValue('summary');
 
                 for (let i = 0; i < event.jCal[1].length; i++) {
