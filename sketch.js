@@ -19,7 +19,7 @@ function preload() {
   //footerStrings.push(cleaningLoader.getCleanersSentence(1));
   footerStrings.push(coffeeLoader.displaySentences());
   // --- add data here
-  dataHandler.setTrainInfoData(loadJSON('staticKvbData.json'));
+  dataHandler.setTrainInfoData(loadJSON('http://cocos01.gm.fh-koeln.de:1880/stations/get/all'));
   dataHandler.setFooterStrings(footerStrings);
   // ---
 }
@@ -37,13 +37,11 @@ function setup() {
 
 }
 function draw() {
-  // #### draw the display
     if (dataSource) {
         displayBuilder.displayDraw();
     } else {
        displayBuilder2.displayDraw();
     }
-  console.log(frameRate());
 }
 function keyPressed() {
   if (key === 'x' || key === 'X') {
