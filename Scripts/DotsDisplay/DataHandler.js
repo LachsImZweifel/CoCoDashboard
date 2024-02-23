@@ -52,6 +52,9 @@ class DataHandler {
         return this.trainInfoArray;
     }
     setFooterStrings(footerStrings) {
+        if (footerStrings.length == 0) {
+            footerStrings.push("Derzeit gibt es keine Informationen zur Aufräumliste oder dem Kaffeestatus.");
+        }
         this.footerStrings = footerStrings;
     }
     getFooterStrings() {
