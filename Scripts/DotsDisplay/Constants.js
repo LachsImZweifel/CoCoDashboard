@@ -8,14 +8,14 @@ class Constants {
     static ledSpacing = 1;
     static led = Constants.ledLampSize + Constants.ledSpacing;
 
-    // Height Settings in Dots
+    // Width Settings in Dots
     static charWidthDots = 5;
     static spacesBetweenCharsDots = 1;
     static columnWidthDots = this.charWidthDots + this.spacesBetweenCharsDots;
     static textBoxSpacingDots = this.columnWidthDots;
     static marginLeftRightDots = this.columnWidthDots;
 
-    // Width Settings in Dots
+    // Height Settings in Dots
     static charHeightDots = 7;
     static rowHeightDots = this.charHeightDots;
     static spaceBetweenRowsDots = 3;
@@ -34,7 +34,7 @@ class Constants {
     static canvasHeight = (this.heightOfContentDots + this.heightOfFooterDots + this.spacesBetweenCharsDots * 7) * this.led;
 
     // Calculation of canvas width
-    static canvasWidth = 800;
+    static canvasWidth = 45*this.columnWidthDots*this.led;
 
     // Animation
     static displayUpdatingRate = 35;

@@ -24,16 +24,16 @@ function preload() {
   // ---
 }
 function setup() {
-    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[4,20,8,6]);
-    displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[7,24,8]);
-    displayBuilder.setupDisplay();
-    displayBuilder2.setupDisplay();
+    displayBuilder = new DisplayBuilder(dataHandler.getTrainInfoArray(), dataHandler.getFooterStrings(),[4,23,8,6]);
+    displayBuilder2 = new DisplayBuilder(dataHandler.getCalendarArray(), dataHandler.getFooterStrings(),[8,25,8]);
     dataSource = true;
-    background(0);
     displayBuilder.fillTextBoxes();
     displayBuilder.fillDisplayWithDots();
     displayBuilder2.fillTextBoxes();
     displayBuilder2.fillDisplayWithDots();
+    background(0);
+    createCanvas(Constants.canvasWidth, Constants.canvasHeight);
+    displayBuilder.fillDisplayWithDots();
 
 }
 function draw() {
@@ -49,10 +49,9 @@ function keyPressed() {
   if (key === 'x' || key === 'X') {
     dataSource = !dataSource;
     if (dataSource){
-        displayBuilder.setupDisplay();
+        displayBuilder.fillDisplayWithDots();
         displayBuilder.redrawAllTextBoxes()
     } else {
-        displayBuilder2.setupDisplay();
         displayBuilder2.fillDisplayWithDots();
         displayBuilder2.redrawAllTextBoxes();
     }

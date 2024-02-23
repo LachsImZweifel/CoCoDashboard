@@ -8,11 +8,6 @@ class DisplayBuilder {
         this.innerCanvasWidthDots = Constants.columnWidthDots * this.sumArray(this.columns) + Constants.textBoxSpacingDots * (this.columns.length-2);
     }
 
-    setupDisplay() {
-        Constants.canvasWidth = (this.innerCanvasWidthDots + Constants.marginLeftRightDots * 4) * Constants.led;
-        createCanvas(Constants.canvasWidth, Constants.canvasHeight);
-    }
-
     displayDraw()  {
         // draw textFields on the display
         for (let i = 0; i < this.textBoxArray.length; i++) {
@@ -38,6 +33,7 @@ class DisplayBuilder {
         this.fillFooter();
     }
     fillDisplayWithDots() {
+        background(0);
         for (let i = 0; i < Constants.canvasWidth; i += Constants.led) {
             for (let j = 0; j < Constants.canvasHeight; j += Constants.led) {
                 fill(Constants.colorOff);
