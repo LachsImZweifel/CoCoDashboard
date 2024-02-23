@@ -1,27 +1,19 @@
 class DisplayBuilder {
     constructor(contentArray, footerContentArray, columnArray) {
         this.contentArray = contentArray;
-        this.footerArray = footerContentArray;
-        this.columns = columnArray;
-        this.x = 0;
-        this.sum = this.sumArray(this.columns);
-        this.innerCanvasWidthDots = Constants.columnWidthDots * this.sum + Constants.textBoxSpacingDots * (this.columns.length-2);
         this.textBoxArray = [];
+        this.footerArray = footerContentArray;
         this.footerTextBox;
+        this.columns = columnArray;
+        this.innerCanvasWidthDots = Constants.columnWidthDots * this.sumArray(this.columns) + Constants.textBoxSpacingDots * (this.columns.length-2);
     }
-    sumArray(arr) {
-        let sum = 0;
-        for (let i = 0; i < arr.length; i++) {
-            sum += arr[i];
-        }
-        return sum;
-    }
+
     setupDisplay() {
         Constants.canvasWidth = (this.innerCanvasWidthDots + Constants.marginLeftRightDots * 4) * Constants.led;
         createCanvas(Constants.canvasWidth, Constants.canvasHeight);
     }
 
-    displayDraw() {
+    displayDraw()  {
         // draw textFields on the display
         for (let i = 0; i < this.textBoxArray.length; i++) {
             this.textBoxArray[i].draw();
@@ -67,5 +59,12 @@ class DisplayBuilder {
         }
         this.footerTextBox = new TextBox(x, y, this.innerCanvasWidthDots);
         this.footerTextBox.createTextCell(footerString);
+    }
+    sumArray(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
     }
 }

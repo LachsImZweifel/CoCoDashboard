@@ -1,74 +1,14 @@
 class TextBox {
-    constructor(x,y,maxWidth) {
-        this.animated = false;
-        this.lastUpdateTime = millis();
-        this.isDrawn = false;
-        this.bitmap = [];
+    constructor(x, y, maxWidth) {
         this.startXInLeds = x;
         this.startYInLeds = y;
         this.maxWidth = maxWidth;
+        this.isDrawn = false;
+        this.animated = false;
         this.offset = 0;
-    }
+        this.lastUpdateTime = millis();
 
-    draw() {
-        if (this.animated) {
-            this.drawAnimated();
-        } else {
-            this.drawStatic();
-        }
-    }
-    drawStatic() {
-        if (!this.isDrawn) {
-            let y = this.startYInLeds * Constants.led;
-            for (const row of this.bitmap) {
-                let x = this.startXInLeds * Constants.led
-                for (const char of row) {
-                    if (char === '1') {
-                        fill(Constants.colorOn); // Turn on the LED
-                    } else {
-                        fill(Constants.colorOff); // Turn off the LED
-                    }
-                    noStroke();
-                    square(x, y, Constants.ledLampSize);
-                    x += Constants.led;
-                }
-                y += Constants.led;
-            }
-            this.isDrawn = true;
-        }
-    }
-    drawAnimated() {
-        if(!this.isDrawn) {
-            let y = this.startYInLeds * Constants.led;
-            for (const row of this.bitmap) {
-                let x = this.startXInLeds * Constants.led;
-                for( let i = 0; i < this.maxWidth; i++) {
-                    if (row[i+this.offset] === '1') {
-                        fill(Constants.colorOn); // Turn on the LED
-                    } else {
-                        fill(Constants.colorOff); // Turn off the LED
-                    }
-                    noStroke();
-                    square(x, y, Constants.ledLampSize);
-                    // Warum macht das den code langsam????
-                    // console.log(this.startYInLeds);
-                    x += Constants.led;
-                }
-                y += Constants.led;
-                this.isDrawn = true;
-            }
-        }
-        let currentTime = millis();
-        if (currentTime - this.lastUpdateTime >= Constants.displayUpdatingRate) {
-            this.offset += 1;
-            this.lastUpdateTime = currentTime;
-            this.isDrawn = false;
-
-            if (this.offset >= this.bitmap[0].length) {
-                this.offset = 0;
-            }
-        }
-
+        this.bitmap = [];
     }
     createTextCell(str) {
         let resultRows = Array(7).fill('');
@@ -95,4 +35,67 @@ class TextBox {
             this.animated = true;
         }
     }
+    draw() {
+        if (this.animated) {
+            this.drawAnimated();
+        } else {
+            this.drawStatic();
+        }
+    }
+    drawStatic() {
+        if (!this.isDrawn) {
+            let y = this.startYInLeds * Constants.led;
+            for (const row of this.bitmap) {
+                let x = this.startXInLeds * Constants.led
+                for (const char of row) {
+                    if (char === '1') {
+                        fill(Constants.colorOn);
+                    } else {
+                        fill(Constants.colorOff);
+                    }
+                    noStroke();
+                    square(x, y, Constants.ledLampSize);
+                    x += Constants.led;
+                }
+                y += Constants.led;
+            }
+            this.isDrawn = true;
+        }
+    }
+    drawAnimated() {
+        if(!this.isDrawn) {
+            let y = this.startYInLeds * Constants.led;
+            for (const row of this.bitmap) {
+                let x = this.startXInLeds * Constants.led;
+                for( let i = 0; i < this.maxWidth; i++) {
+                    if (row[i+this.offset] === '1') {
+                        fill(Constants.colorOn);
+                    } else {
+                        fill(Constants.colorOff);
+                    }
+                    noStroke();
+                    square(x, y, Constants.ledLampSize);
+                    // Warum macht das den code langsam????
+                    // console.log(this.startYInLeds);
+                    //
+                    x += Constants.led;
+                }
+                y += Constants.led;
+                this.isDrawn = true;
+            }
+        }
+        let currentTime = millis();
+        if (currentTime - this.lastUpdateTime >= Constants.displayUpdatingRate) {
+            this.offset += 1;
+            this.lastUpdateTime = currentTime;
+            this.isDrawn = false;
+
+            if (this.offset >= this.bitmap[0].length) {
+                this.offset = -this.maxWidth;
+            }
+        }
+
+    }
+
+
 }
