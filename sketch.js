@@ -1,10 +1,7 @@
 let dataHandler;
 let displayBuilder;
 let dataSource = true;
-let cleaningLoader;
-let week = 2;
 let coffeeLoader;
-//load Coffee Spreadsheet
 
 
 
@@ -53,8 +50,11 @@ function keyPressed() {
     dataSource = !dataSource;
     if (dataSource){
         displayBuilder.setupDisplay();
+        displayBuilder.redrawAllTextBoxes()
     } else {
         displayBuilder2.setupDisplay();
+        displayBuilder2.fillDisplayWithDots();
+        displayBuilder2.redrawAllTextBoxes();
     }
   }
 }
