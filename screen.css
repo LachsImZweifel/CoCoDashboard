@@ -3,6 +3,17 @@ main {
     margin: 0 auto;
     padding: 20px;
 }
-body{
-    background-color: #000;
+body {
+    display: flex;
+    flex-direction: column; /* Stapelt Elemente vertikal */
+    align-items: center; /* Zentriert Elemente horizontal */
+    background-color: #000; /* Hintergrundfarbe, wie bereits definiert */
 }
+p {
+    color: white; /* Setzt die Textfarbe auf Weiß */
+    font-family: 'Roboto', sans-serif; /* Verwendet Roboto, mit einem Fallback auf sans-serif */
+    font-size: 16px; /* Setzt die Schriftgröße auf 16px, anpassbar nach Bedarf */
+    line-height: 1.5; /* Verbessert die Lesbarkeit durch Erhöhung des Zeilenabstands */
+    margin: 20px 0; /* Fügt oben und unten einen Abstand von 20px hinzu, anpassbar */
+}
+
